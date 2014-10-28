@@ -138,7 +138,8 @@ class BMC(object):
 			self.clockvarcount = self.clockcount
 		self.clockmax = [self.clockmaxdict[x] for x in self.ordered_vars]
 		if self.INT_FRAC_SPLIT:
-			self.ordered_vars = reduce(operator.add, ([x + brind.INT_SUFFIX, x + brind.FRAC_SUFFIX] for x in self.ordered_vars))
+			if self.ordered_vars:
+				self.ordered_vars = reduce(operator.add, ([x + brind.INT_SUFFIX, x + brind.FRAC_SUFFIX] for x in self.ordered_vars))
 		for vn in sorted(variables):
 			assert not vn.endswith(preproc.PRIME_SUFFIX)
 			assert not vn in self.ordered_vars
